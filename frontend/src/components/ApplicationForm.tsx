@@ -94,7 +94,7 @@ const ApplicationForm: React.FC = () => {
         Candidati per la camera
       </h2>
       <p className="mt-1 text-sm text-slate-300">
-        Raccontaci un po' di te e dei tuoi studi. Rispondiamo solitamente entro 24-48 ore.
+        Raccontaci un po' di te e dei tuoi studi.
       </p>
 
       {/* Status banners */}

@@ -5,25 +5,34 @@ const BedroomDetails: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const images = [
+    
     {
-      src: 'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg',
-      alt: 'Camera moderna con letto matrimoniale',
+      src: '/room (6).jpeg',
+      alt: 'Camera doppia scrivania armadi e studio',
     },
     {
-      src: 'https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg',
+      src: '/room (1).jpeg',
+      alt: 'Cucina e zona pranzo dell\'appartamento',
+    },
+    {
+      src: '/room (2).jpeg',
+      alt: 'Bagno',
+    },
+    {
+      src: '/room (3).jpeg',
+      alt: 'Sala e spazio comune',
+    },
+    {
+      src: '/room (5).jpeg',
+      alt: 'Camera doppia scrivania armadi e studio',
+    },
+    {
+      src: '/room (7).jpeg',
       alt: 'Zona scrivania e studio',
     },
     {
-      src: 'https://images.pexels.com/photos/1329711/pexels-photo-1329711.jpeg',
+      src: '/room (8).jpeg',
       alt: 'Armadio e spazio guardaroba',
-    },
-    {
-      src: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg',
-      alt: 'Vista generale della camera',
-    },
-    {
-      src: 'https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg',
-      alt: 'Dettagli e comfort',
     },
   ];
 
@@ -73,7 +82,7 @@ const BedroomDetails: React.FC = () => {
               <img
                 src={image.src}
                 alt={image.alt}
-                className="h-64 w-full object-cover md:h-72"
+                className="h-64 w-full object-contain md:h-72"
               />
             </div>
           ))}
@@ -156,6 +165,12 @@ const BedroomDetails: React.FC = () => {
             </span>
           </p>
           <p className="text-sm text-slate-400">
+            10 minuti a piedi (400m) da{' '}
+            <span className="font-medium text-slate-100">
+              Universita degli studi di Brescia - Facoltà di Medicina
+            </span>
+          </p>
+          <p className="text-sm text-slate-400">
             5 minuti a piedi (150m) da{' '}
             <span className="font-medium text-slate-100">
               Metro Monpiano
@@ -179,6 +194,9 @@ const BedroomDetails: React.FC = () => {
             </div>
             <div className="mt-1 flex items-center justify-between text-slate-300">
               <span>Bollette acqua, gas, teleriscaldamento</span>
+            </div>
+            <div className="mt-1 flex items-center justify-between text-slate-300">
+              <span>Lavatrice, forno, microonde, friggitrice ad aria</span>
             </div>
             <div className="mt-1 flex items-center justify-between text-slate-300">
               <span>Internet fibra 2.5Gbit in casa</span>
