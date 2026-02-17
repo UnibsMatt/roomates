@@ -1,13 +1,18 @@
 import os
 from typing import List
 
-from fastapi import Depends, FastAPI, Header, HTTPException, status
+from fastapi import Depends, FastAPI, Header, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from slowapi.util import get_remote_address
 from sqlalchemy.orm import Session
 
 import models
 import schemas
 from database import Base, engine, get_db
+
+limiter = Limiter(key_func=get_remote_address)
 
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "")
 
@@ -27,6 +32,8 @@ app = FastAPI(
     description="Simple API to store rental bedroom applications for students.",
     version="1.0.0",
 )
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # CORS configuration – adjust origins as needed to match your frontend port
 # In production with nginx proxy, CORS is handled at the nginx level
@@ -98,7 +105,8 @@ def create_application(
     tags=["applications"],
     dependencies=[Depends(verify_admin)],
 )
-def list_applications(db: Session = Depends(get_db)):
+@limiter.limit("10/minute")
+def list_applications(request: Request, db: Session = Depends(get_db)):
     """Return all applications ordered from oldest to newest."""
     apps = (
         db.query(models.Application)
