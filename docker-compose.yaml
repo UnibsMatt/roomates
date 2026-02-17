@@ -8,6 +8,7 @@ services:
       - backend-db:/app/data
     environment:
       - PYTHONUNBUFFERED=1
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-changeme}
     networks:
       - roomates-network
     restart: unless-stopped

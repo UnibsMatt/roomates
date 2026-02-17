@@ -1,12 +1,23 @@
+import os
 from typing import List
 
-from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi import Depends, FastAPI, Header, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
 import models
 import schemas
 from database import Base, engine, get_db
+
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "")
+
+
+def verify_admin(x_admin_password: str = Header(default="")):
+    if not ADMIN_PASSWORD or x_admin_password != ADMIN_PASSWORD:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Unauthorized",
+        )
 
 # Create DB tables on startup (simple and fine for this small demo)
 Base.metadata.create_all(bind=engine)
@@ -85,6 +96,7 @@ def create_application(
     "/applications",
     response_model=List[schemas.ApplicationRead],
     tags=["applications"],
+    dependencies=[Depends(verify_admin)],
 )
 def list_applications(db: Session = Depends(get_db)):
     """Return all applications ordered from oldest to newest."""

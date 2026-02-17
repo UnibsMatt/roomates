@@ -24,3 +24,20 @@ export async function submitApplication(
   return (await res.json()) as Application;
 }
 
+export async function getApplications(password: string): Promise<Application[]> {
+  const res = await fetch(`${API_BASE_URL}/applications`, {
+    headers: { 'X-Admin-Password': password },
+  });
+
+  if (res.status === 401) {
+    throw new Error('Unauthorized');
+  }
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || `Failed to fetch applications (status ${res.status})`);
+  }
+
+  return (await res.json()) as Application[];
+}
+
