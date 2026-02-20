@@ -4,7 +4,15 @@ const BedroomDetails: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const images = [
+  const images = [    {
+      src: '/room (7).jpeg',
+      alt: 'Zona scrivania e studio',
+    },
+    
+    {
+      src: '/room (10).jpeg',
+      alt: 'Armadio e spazio guardaroba',
+    },
     
     {
       src: '/room (6).jpeg',
@@ -26,12 +34,17 @@ const BedroomDetails: React.FC = () => {
       src: '/room (5).jpeg',
       alt: 'Camera doppia scrivania armadi e studio',
     },
-    {
-      src: '/room (7).jpeg',
-      alt: 'Zona scrivania e studio',
-    },
+
     {
       src: '/room (8).jpeg',
+      alt: 'Armadio e spazio guardaroba',
+    },
+    {
+      src: '/room (9).jpeg',
+      alt: 'Armadio e spazio guardaroba',
+    },
+    {
+      src: '/room (11).jpeg',
       alt: 'Armadio e spazio guardaroba',
     },
   ];
