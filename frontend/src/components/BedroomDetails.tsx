@@ -38,7 +38,6 @@ const BedroomDetails: React.FC = () => {
       src: '/room (5).jpeg',
       alt: 'Camera doppia scrivania armadi e studio',
     },
-
     {
       src: '/room (8).jpeg',
       alt: 'Armadio e spazio guardaroba',
